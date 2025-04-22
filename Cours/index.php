@@ -48,7 +48,54 @@
 
     print is_int(78); //true --> 1
     print is_scalar("78");
-    
+
+
+    // Oerateurs arithmétiques
+    // + - * / % **
+
+
+    // Comparaison
+
+    var_dump(5 == '5'); // true
+    var_dump(5 === '5'); // false
+    var_dump(5 != '5'); // false
+    var_dump(5 <> '5'); // false (même chose qu'avant)
+
+    var_dump(5 <=> 5); // 0
+    var_dump(3 <=> 5); // -1
+    var_dump(8 <=> 5); // 1
+
+    //Opérateurs logiques
+    // && || and or ! xor
+    // xor => soit l'un soit l'autre (ou exclusif)
+
+    var_dump(true || true); //true
+    var_dump(true or true); //true
+    var_dump(true xor true); //false
+
+    //Opérateur d'exécution
+    $output = `pwd`;  //script shell
+    echo $output, PHP_EOL;
+
+    //Contrôle d'erreur
+    echo @$none; //pas d'erreur même si $none n'existe pas
+
+    //Opérateur peut être unaire, binaire ou ternaire
+    //unaire -> agit sur une opérande
+    $a = -1;
+    $a++;
+
+    //biaire -> agit sur deux opérandes
+    $b = 2 + 4;
+
+    //ternaire -> agit sur trois opérandes
+    $c = 'coco' ? 'ok' : 'pas ok';
+
+    //Précédence (Priorité) des opérateurs
+    // && avant || 
+
+    // Associativité (ordre quand il y a la même priorité)
+    // * avant + sauf si entre ()
 ?>
     
     </body>
