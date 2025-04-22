@@ -96,7 +96,92 @@
 
     // Associativité (ordre quand il y a la même priorité)
     // * avant + sauf si entre ()
+
+    //CONDITIONS
+$mood = "content";
+    //if, elseif, else
+    if ($mood === "content"){
+        echo "tu es $mood", PHP_EOL;
+    }elseif ($mood === "triste"){
+        echo "Dommage", PHP_EOL;
+
+    }else {
+        echo "quel est ton humeur ?", PHP_EOL;
+    }  
 ?>
+
+<?php if ($mood === "content"): ?>
+    <p>Tu es <?= $mood ?></p>
+<?php elseif ($mood === "triste"): ?>
+    <p>Quel dommage!</p>
+<?php else: ?>
+    <p>Quel est ton humeur ?<?= $mood ?></p>
+<?php endif; ?>
     
+
+<?php
+//switch
+
+switch ($mood) {
+    case 'content' :
+        echo 'toi content !', PHP_EOL;
+        break;
+    case 'triste' :
+    case 'mausade' :
+        echo 'Dommage !', PHP_EOL;
+        break;
+    default :
+        echo 'Ton humeur ??', PHP_EOL;
+}
+
+//match --> cas stricts
+$userChoice = "salade";
+$menu = match ($userChoice){
+    "plat principal" => "raviolis",
+    "entrée", "salade" => "riz/thon/tomates",
+    default => "plat non servi",
+};
+echo $menu, PHP_EOL;
+
+//match --> cas complexes
+$age = 56;
+$accessAllowed = match (true){
+    $age >= 18 => true,
+    default => false
+};
+echo $accessAllowed ? "Accès autorisé" : "Accès interdit", PHP_EOL;
+
+
+$userName;
+$userConnected = $userName ?? 'anonyme';
+// ou
+$userConnected = isset($userName) ? $userName : 'anonyme';
+//manque du cours
+
+
+// BOUCLES
+
+// While, Do while
+$i = 0;
+while ($i <= 10) {
+    echo "Le compteur vaut : ", $i++, PHP_EOL;
+}
+
+do {
+    print "Itération $i" . PHP_EOL;
+    $i++;
+} while ($i <= 15);
+
+//For
+for ($i =0; $i <= 10; $i++){
+    echo "Le compteur vaut : ", $i++, PHP_EOL;
+}
+
+//Foreach
+foreach (str_split("salut") as $char) {
+    echo $char, PHP_EOL;
+}
+?>
+
     </body>
 </html>
