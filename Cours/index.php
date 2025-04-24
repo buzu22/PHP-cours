@@ -180,8 +180,58 @@ for ($i =0; $i <= 10; $i++){
 //Foreach
 foreach (str_split("salut") as $char) {
     echo $char, PHP_EOL;
+}?>
+
+
+<?php
+//TABLEAUX
+
+//Tableaux indexés (clé implicite + valeurs)
+
+//Tableaux associatifs (clés explicite + valeurs)
+
+//On peu mixer indexé et associatif
+// var_dump($array); pour voir le tableau
+
+// echo count($array), PHP_EOL;
+// echo sizeof($array), PHP_EOL;
+//Voir longueur du tableau
+
+// 
+
+//FONCTIONS
+// on lui envoie des argument quand on veut l'utiliser, ces arguments sont des paramètres quand on créé la fonction 
+
+
+
+// on peut passer une variable par valeur ou par référence 
+// si on en modifie un par ref, l'autre sera modifié aussi alors que par valeur non (voir schéma)
+
+//en php, on ne manipule que des copies mais dès que je met &$a dans la fonction, a peu changer
+// exemple:
+function entier($tab) {
+    $tab = [45, 98];
 }
+$ar = [9.8, 18.99];
+
+entier($ar);
+// $ar ne change pas sauf si on met (&$tab)
+// & permet de pointer vers l'adresse plutot que vers la valeur
+
+
+//Superglobales ($_ ) => requête demande par client :
+// $_POST
+//  - entête 
+// - payload = contenu (body)
+
+
+
+// $_GET par url  (index.php?name=Yoann&&age=88&&isMan=true)
+// php déballe la requête et le met dans le tableau GET
+// echo "<p>Bonjour " . $_GET['name'] . </p>;
 ?>
+<!-- <?php session_start(); $_SESSION['mykey']  ?>  Pour garder des infos de session  -->
+
 
     </body>
 </html>

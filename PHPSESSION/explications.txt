@@ -1,0 +1,45 @@
+                    Fonctionnement pas à pas
+
+    1. Premier chargement de index.php
+
+- Une session est créée avec session_start()
+- data.php est inclus, ce qui définit $title = "page d'accueil"
+- $_SESSION['newTitle'] n'existe pas encore, donc on lui assigne la valeur de $title
+- La page affiche "page d'accueil" comme titre
+
+
+    2. L'utilisateur clique sur "Modifier le titre"
+
+- Le navigateur va sur cible.php?newTitle=Bienvenue
+- cible.php démarre avec session_start() pour récupérer la même session
+- data.php est inclus à nouveau
+- $_SESSION["newTitle"] est redéfini avec $title (redondant)
+- $_SESSION["newTitle"] est ensuite remplacé par la valeur du paramètre GET "newTitle", soit "Bienvenue"
+- L'utilisateur est redirigé vers la page d'accueil (Location:/)
+
+
+    3. Retour à index.php après redirection
+
+- session_start() récupère la session existante
+- data.php est inclus à nouveau
+- L'instruction $_SESSION['newTitle'] = $_SESSION['newTitle'] ?? $title; évalue si $_SESSION['newTitle'] existe
+
+- Puisqu'il existe maintenant (avec la valeur "Bienvenue"), cette valeur est conservée
+
+
+- La page affiche "Bienvenue" comme titre
+
+
+
+                        Points importants à comprendre
+
+    1. Les sessions en PHP permettent de conserver des données entre différentes pages et requêtes. La fonction 
+    session_start() au début de chaque script est cruciale pour maintenir cette continuité.
+
+    2. L'opérateur ?? (fusion null) est très pratique. Il vérifie si la valeur à gauche existe et n'est pas null. Si c'est le cas, il utilise cette valeur; sinon, il utilise la valeur à droite.
+
+    3. La redirection avec header("Location:/"); envoie l'utilisateur vers une autre page, mais les données de session sont conservées tant que session_start() est présent dans chaque script.
+
+    4. La ligne $_SESSION["newTitle"] = $title; dans cible.php est effectivement redondante comme le suggère le commentaire, car cette valeur est immédiatement écrasée par la ligne suivante.
+
+Cette structure permet de modifier le titre de la page sans avoir à le saisir directement dans le code HTML, en utilisant les sessions PHP pour conserver l'état entre les pages.
