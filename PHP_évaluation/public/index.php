@@ -3,13 +3,15 @@ session_start();
 // session_unset();
 // session_destroy();
 
-
+require_once __DIR__ . '/../src/functions.php';
 
 // Si les contacts n'existent pas dans la session, les charger depuis le fichier
 if (!isset($_SESSION['contacts'])) {
-    require_once __DIR__ . '/../src/contacts.php';
-    $_SESSION['contacts'] = $contacts;
+    $jsonFile = __DIR__ . '/../src/data/contacts.json';
+    $contactsJson = file_exists($jsonFile) ? file_get_contents($jsonFile) : '[]';
+    $_SESSION['contacts'] = json_decode($contactsJson, true) ?: []; // Fallback à [] si JSON invalide
 }
+
 
 // Traitement du formulaire d'ajout de contact
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -23,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           'email' => $newContactEmail,
           'favorite' => false,
         ]);
+        saveContacts();  // Appel de saveContacts pour enregistrer dans contacts.json
     } else {
         $error = 'Il faut renseigner un contact !';
     }

@@ -9,6 +9,7 @@ function deleteContact($id)
             break;
         }
     }
+    saveContacts(); // Sauvegarde après suppression
 }
 
 function addFavorite($id)
@@ -19,6 +20,7 @@ function addFavorite($id)
             break;
         }
     }
+    saveContacts(); // Sauvegarde après modification
 }
 
 function updateContact($id, $newName, $newEmail)
@@ -30,4 +32,10 @@ function updateContact($id, $newName, $newEmail)
             break;
         }
     }
+    saveContacts(); // Sauvegarde après mise à jour
+}
+
+function saveContacts()
+{
+    file_put_contents(__DIR__ . '/../src/data/contacts.json', json_encode($_SESSION['contacts'], JSON_PRETTY_PRINT));
 }
